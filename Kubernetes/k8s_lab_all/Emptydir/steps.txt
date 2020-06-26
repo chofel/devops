@@ -1,0 +1,25 @@
+Create the Pod:
+#kubectl apply -f emptydir.yaml
+
+Verify that the Pod's Container is running, and then watch for changes to the Pod:
+#kubectl get pod redis --watch
+
+In another terminal, get a shell to the running Container:
+# kubectl exec -it redis -- /bin/bash
+In your shell, go to /data/redis, and then create a file:
+root@redis:/data# cd /data/redis/
+root@redis:/data/redis# echo Hello > test-file1
+
+In your shell, list the running processes:
+
+#apt-get update
+#apt-get install procps
+#ps aux
+
+In your shell, kill the Redis process:
+# root@redis:/data/redis# kill <pid>
+
+Get a shell into the restarted Container:
+# kubectl exec -it redis -- /bin/bash
+
+In your shell, go to /data/redis, and verify that test-file1 is still there.

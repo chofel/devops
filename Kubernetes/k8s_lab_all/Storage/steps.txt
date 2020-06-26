@@ -1,0 +1,46 @@
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+
+In your shell on that Node, create a /mnt/data directory:
+
+#sudo mkdir /mnt/data
+#sudo sh -c "echo 'Hello from my storage' > /mnt/data/index.html"
+
+Create the PersistentVolume:
+#kubectl apply -f pv-volume.yaml
+
+View information about the PersistentVolume:
+
+#kubectl get pv task-pv-volume
+
+Create a PersistentVolumeClaim
+#kubectl apply -f pv-claim.yaml
+
+Look again at the PersistentVolume:
+#kubectl get pv task-pv-volume
+
+Look at the PersistentVolumeClaim:
+
+#kubectl get pvc task-pv-claim
+
+Create a Pod
+
+#kubectl apply -f pv-pod.yaml
+
+Verify that the container in the Pod is running;
+#kubectl get pod task-pv-pod
+
+Get a shell to the container running in your Pod:
+#kubectl exec -it task-pv-pod -- /bin/bash
+apt update
+apt install curl
+curl http://localhost/
+
+Clean up
+#kubectl delete pod task-pv-pod
+#kubectl delete pvc task-pv-claim
+#kubectl delete pv task-pv-volume
+
+
+
+
+

@@ -1,0 +1,12 @@
+Runthe yaml file to create the pods.
+
+Create a folder name /data
+
+
+#kubectl create -f hostpath1.yaml
+
+Get a shell into the restarted Container:
+# kubectl exec -it redis -- /bin/bash
+
+#cd /redis/
+check with /data

@@ -1,0 +1,33 @@
+You can run the example with this command:
+
+#kubectl apply -f job.yaml
+
+Check on the status of the Job with kubectl:
+#kubectl describe jobs/pi
+
+kubectl logs pods
+
+=================Run cronjob===============
+
+Run the example CronJob by using this command:
+
+#kubectl create -f cronjob.yaml
+
+After creating the cron job, get its status using this command:
+
+# kubectl get cronjob hello
+
+
+#kubectl get jobs --watch
+
+##kubectl get cronjob hello
+
+Replace "hello-4111706356" with the job name in your system
+
+#pods=$(kubectl get pods --selector=job-name=hello-4111706356 --output=jsonpath={.items[*].metadata.name})
+
+kubectl logs $pods
+
+Deleting a Cron Job
+
+#kubectl delete cronjob hello
